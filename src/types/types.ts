@@ -8,7 +8,7 @@ interface Todo {
 }
 
 type TodoFormProps = {
-    onSubmit : (title:string) => void;
+    onSubmit : (todo:any) => void;
     onToggle:(state:boolean) =>void;    
 }
 
@@ -30,11 +30,16 @@ type HeaderProps = {
     onToggle :(state:boolean)=>void;
 }
 
+type FooterProps = {
+    onToggle : (state:boolean)=>void;
+}
+
 
 export type{
     Todo,
     TodoFormProps,
     TodoItemProps,
     TodoListProp,
-    HeaderProps
+    HeaderProps,
+    FooterProps
 }

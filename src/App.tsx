@@ -1,60 +1,34 @@
 import TodoList from "./components/TodoList"
-import { Todo } from "./types/types"
 import Header from "./components/Header"
+import Footer from './components/Footer'
 import TodoForm from "./components/TodoForm"
 import { useState } from "react"
+import { Todo } from "./types/types"
 
 function App() {
+const [todos,setTodos] = useState<Todo[]>([])
+const [visible,setVisible] = useState(false)
 
-  const [visible,setVisible] = useState(false)
 
-    const todo : Todo[] = [{
-        id:'1',
-        title:"Go to the gym",
-        description : "Go Gym daily at 5",
-        complete : false,
-        createdAt : new Date(),
-    },
-    {
-      id:'1',
-      title:"Go to the gym",
-      description : "Go Gym daily at 5",
-      complete : false,
-      createdAt : new Date(),
-  },
-  {
-    id:'1',
-    title:"Go to the gym Go to the gym Go to the gym Go to the gym Go to the gym",
-    description : "Go Gym daily at 5",
-    complete : false,
-    createdAt : new Date(),
-},
-{
-  id:'1',
-  title:"Go to the gym Go to the gym ",
-  description : "Go Gym daily at 5",
-  complete : false,
-  createdAt : new Date(),
-},
-{
-  id:'1',
-  title:"Go to the gym Go to the gym Go to the gym Go to the gymGo to the gym",
-  description : "Go Gym daily at 5",
-  complete : false,
-  createdAt : new Date(),
-}]
+function deleteTodo(id:string){
+  setTodos((prev)=>prev.filter((todo)=>todo.id!=id))
+}
+
+function toggleTodo(id:string){
+  setTodos((prev)=>prev.map((todo)=>todo.id===id?{...todo,complete:!todo.complete}:todo))
+}
+
 
   return (
     <>
-      <div>
+      <div className="h-screen w-screen">
           <Header firstname="Aashish" onToggle={setVisible}/>
         <div className="ml-20 mt-7">
-          <TodoList todos={todo} onDelete={()=>{}} onToggle={()=>{}}/>
+          <TodoList todos={todos} onDelete={deleteTodo} onToggle={toggleTodo}/>
         </div>
-        {visible && <TodoForm onSubmit={()=>{}} onToggle={setVisible}/>}
+        {visible && <TodoForm onSubmit={setTodos} onToggle={setVisible}/>}
+        <Footer onToggle={setVisible} />
       </div>
-        
-        
     </>
   )
 }

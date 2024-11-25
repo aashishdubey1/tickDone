@@ -9,10 +9,11 @@ interface Todo {
 
 type TodoFormProps = {
     onSubmit : (title:string) => void;
+    onToggle:(state:boolean) =>void;    
 }
 
 type TodoItemProps = {
-    todo: Todo;
+    todo: Todo; 
     onToggle:(id:string) => void;
     onDelete :(id:string) => void;
 }
@@ -23,9 +24,17 @@ type TodoListProp = {
     onDelete: (id:string) => void;
 }
 
+
+type HeaderProps = {
+    firstname:string;
+    onToggle :(state:boolean)=>void;
+}
+
+
 export type{
     Todo,
     TodoFormProps,
     TodoItemProps,
-    TodoListProp
+    TodoListProp,
+    HeaderProps
 }

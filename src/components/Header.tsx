@@ -1,0 +1,19 @@
+import React from 'react'
+import { HeaderProps } from '../types/types'
+
+const Header : React.FC<HeaderProps> = ({firstname,onToggle}) => {
+  return (
+    <div className='shadow-lg'> 
+        <header className='flex items-center justify-between py-3 px-12'>
+            <h1 className='text-2xl font-bold'>TICKDONE</h1>
+            <button className='border-2 border-black rounded-lg px-6 py-2' onClick={()=>onToggle(true)}>Create Task</button>
+            <nav className='flex gap-5 items-center'>
+                <h1 className='text-lg font-medium'>Hey, {firstname}</h1>
+                <div className='h-12 w-12 rounded-full flex justify-center items-center bg-slate-400 text-lg font-bold'>{firstname[0]}</div>
+            </nav>
+        </header>
+    </div>
+  )
+}
+
+export default Header

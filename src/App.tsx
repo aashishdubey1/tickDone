@@ -21,16 +21,26 @@ function toggleTodo(id:string){
 
   return (
     <>
-      <div className="h-screen w-screen">
-          <Header firstname="Aashish" onToggle={setVisible}/>
-        <div className="ml-20 mt-7">
-          <TodoList todos={todos} onDelete={deleteTodo} onToggle={toggleTodo}/>
+      <div className="flex flex-col h-dvh w-dvw bg-mainBg">
+        <Header firstname="Aashish" onToggle={setVisible} />  
+        <div className="h-[calc(100%-7rem)] px-5 pt-5 overflow-y-auto grid gap-5 grid-cols-1 auto-rows-auto justify-center sm:grid-cols-2 lg:grid-cols-4 md:auto-cols-auto md:auto-rows-fr">  
+          <TodoList onDelete={deleteTodo} onToggle={toggleTodo} todos={todos} />
         </div>
-        {visible && <TodoForm onSubmit={setTodos} onToggle={setVisible}/>}
-        <Footer onToggle={setVisible} />
+        {visible && <TodoForm onSubmit={setTodos} onToggle={setVisible} />}  
+        <Footer onToggle={setVisible}/>
       </div>
     </>
   )
 }
 
 export default App
+
+
+{/* <div className="min-h-screen w-screen">
+<Header firstname="Aashish" onToggle={setVisible}/>
+<div className="h-[80%] overflow-y-auto flex flex-col justify-start sm:flex-row sm:flex-wrap w-full items-center ">
+<TodoList todos={todos} onDelete={deleteTodo} onToggle={toggleTodo}/>
+</div>
+<Footer onToggle={setVisible} />
+{visible && <TodoForm onSubmit={setTodos} onToggle={setVisible}/>}
+</div> */}
